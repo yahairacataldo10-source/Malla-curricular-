@@ -1,1 +1,151 @@
+/* --- Variables de Colores y Estilos Globales --- */
+:root {
+    --color-fondo: #fdf6f8;
+    --color-texto: #4a4a4a;
+    --color-ramo-default: #ffffff;
+    --color-ramo-borde: #f0d4db;
+    --color-ramo-aprobado: #e9a7c0;
+    --color-ramo-bloqueado: #f5f5f5;
+    --color-texto-bloqueado: #b0b0b0;
+    --color-titulo-semestre: #d9869c;
+    --sombra-caja: 0 4px 15px rgba(0, 0, 0, 0.07);
+    --fuente-principal: 'Poppins', sans-serif;
+}
+
+/* --- Estilos Generales del Cuerpo de la Página --- */
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: var(--color-titulo-semestre);
+    font-weight: 600;
+}
+
+header p {
+    font-weight: 300;
+    margin-top: -15px;
+}
+
+/* --- Contenedor Principal de la Malla --- */
+.malla-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Espacio entre las columnas de semestres */
+    overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+    padding-bottom: 20px;
+}
+
+/* --- Columnas de Semestres --- */
+.semestre-columna {
+    flex: 1; /* Cada columna ocupa el mismo espacio */
+    min-width: 220px; /* Ancho mínimo para cada columna */
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+}
+
+.semestre-columna h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--color-titulo-semestre);
+    text-align: center;
+    border-bottom: 2px solid var(--color-ramo-borde);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* --- Estilo de cada Ramo --- */
+.ramo {
+    background-color: var(--color-ramo-default);
+    border: 1px solid var(--color-ramo-borde);
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 400;
+    transition: all 0.3s ease; /* Transiciones suaves para cambios de estado */
+    box-shadow: var(--sombra-caja);
+}
+
+/* Estado normal (no bloqueado) */
+.ramo:not(.bloqueado) {
+    cursor: pointer;
+}
+
+.ramo:not(.bloqueado):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Estado Aprobado */
+.ramo.aprobado {
+    background-color: var(--color-ramo-aprobado);
+    color: white;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+    border-color: var(--color-ramo-aprobado);
+}
+
+/* Estado Bloqueado */
+.ramo.bloqueado {
+    background-color: var(--color-ramo-bloqueado);
+    color: var(--color-texto-bloqueado);
+    border-color: #e0e0e0;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- Notificación de Requisitos --- */
+.notificacion {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d9534f;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.notificacion p {
+    margin: 0;
+    padding-right: 20px;
+}
+
+#notificacion-cerrar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* --- Diseño Responsivo para Móviles --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .malla-container {
+        flex-direction: column; /* Apila los semestres verticalmente */
+    }
+    .semestre-columna {
+        min-width: 100%; /* Las columnas ocupan todo el ancho */
+    }
+}
 
